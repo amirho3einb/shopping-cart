@@ -6,15 +6,18 @@ import {
   Route
 } from "react-router-dom";
 import CartPage from './pages/CartPage';
+import CartProvider from './Providers/CartProvider';
 
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/cart" component={CartPage} />
-        <Route path="/" component={HomePage} />
-      </Switch>
+      <CartProvider>
+        <Switch>
+          <Route path="/cart" component={CartPage} />
+          <Route path="/" component={HomePage} />
+        </Switch>
+      </CartProvider>
     </Router>
   );
 }
