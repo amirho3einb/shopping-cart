@@ -1,6 +1,7 @@
 export const products = [
 
     {
+      id:1,
       name: "Winter body",
       description: [
         { support: "گارانتی مادام العمر" },
@@ -13,6 +14,7 @@ export const products = [
       image: "https://s4.uupload.ir/files/item1_soj.jpg",
     }, 
     {
+      id:2,
       name: "Adidas",
       description: [
         { support: "گارانتی مادام العمر" },
@@ -24,6 +26,7 @@ export const products = [
      image:"https://s4.uupload.ir/files/item2_fc5s.jpg"
     },  
     {
+      id:3,
       name: "Vans",
       description: [
         { support: "گارانتی مادام العمر" },
@@ -33,9 +36,10 @@ export const products = [
       price: 99,
       offPrice: 89,
       discount: 10,
-     image:"https://s4.uupload.ir/files/item3_zvc9.jpg"
+      image:"https://s4.uupload.ir/files/item3_zvc9.jpg"
     },  
     {
+      id:4,
       name: "White",
       description: [
         { support: "گارانتی مادام العمر" },
@@ -45,9 +49,10 @@ export const products = [
       price: 260,
       offPrice: 220,
       discount: 15,
-     image:"https://s4.uupload.ir/files/item4_zr94.jpg"
+      image:"https://s4.uupload.ir/files/item4_zr94.jpg"
     },
     {
+      id:5,
       name: "Croopped-shoe",
       description: [
         { support: "گارانتی مادام العمر" },
@@ -57,9 +62,10 @@ export const products = [
       price: 150,
       offPrice: 150,
       discount: 0,
-     image:"https://s4.uupload.ir/files/item5_24ye.jpg"
+      image:"https://s4.uupload.ir/files/item5_24ye.jpg"
     },  
     {
+      id:6,
       name: "Blues",
       description: [
         { support: "گارانتی مادام العمر" },
@@ -69,6 +75,6 @@ export const products = [
       price: 220,
       offPrice:200,
       discount:13,
-     image:"https://s4.uupload.ir/files/item6_7jfy.jpg"
+      image:"https://s4.uupload.ir/files/item6_7jfy.jpg"
     }
   ];
