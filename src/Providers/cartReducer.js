@@ -6,14 +6,17 @@ const cartReducer = (state, action) => {
 
             if(updatedItemIndex < 0){
                 updatedCart.push({ ...action.payload, quantity: 1 });
-                
             }
             else{
                 const updatedItem ={ ...updatedCart[updatedItemIndex] };
                 updatedItem.quantity++;
                 updatedCart[updatedItemIndex] = updatedItem;
             }
-            return {...state, cart: updatedCart};
+            return {
+                ...state,
+                cart: updatedCart,
+                total: state.total + action.payload.price,
+            };
         }
         case "REMOVE_PRODUCT" : {
             const updatedCart = [...state.cart];
@@ -21,11 +24,19 @@ const cartReducer = (state, action) => {
             const updatedItem ={ ...updatedCart[updatedItemIndex] };
             if(updatedItem.quantity === 1){
                 const filterdCart = updatedCart.filter(item => item.id !== action.payload.id);
-                return {...state, cart: filterdCart};
+                return {
+                    ...state,
+                    cart: filterdCart,
+                    total: state.total - action.payload.price,
+                };
             }else{
                 updatedItem.quantity--;
                 updatedCart[updatedItemIndex] = updatedItem;
-                return { ...state, cart: updatedCart};
+                return { 
+                    ...state, 
+                    cart: updatedCart,
+                    total: state.total - action.payload.price,
+                };
             }
         }
         default :
