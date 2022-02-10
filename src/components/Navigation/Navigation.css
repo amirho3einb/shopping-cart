@@ -23,9 +23,24 @@
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 5px;
+  position: relative;
 }
 .mainNavigation a:hover,
 .mainNavigation .activeLink {
   color: #6d28d9;
   background-color: #fff;
+}
+.mainNavigation span {
+  position: absolute;
+  top: -1px;
+  right: -9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #6d28d9;
+  color: #fff;
+  font-size: 11px;
 }
