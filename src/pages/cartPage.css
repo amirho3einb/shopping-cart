@@ -32,10 +32,21 @@
   margin-left: 3rem;
   padding: 1rem;
 }
+
 .cartCenter {
   margin-top: 50px;
   display: flex;
   justify-content: center;
   width: 90vw;
   max-width: 1170px;
+}
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.cartSummary .summaryItem:last-child {
+  border-top: 1px slid #ccc;
+  padding-top: 10px;
 }
