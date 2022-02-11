@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { useCart, useCartActions } from "../Providers/CartProvider";
 import './cartPage.css';
@@ -33,10 +34,10 @@ const CartPage = () => {
                                 </div>
                                 <div>{item.name}</div>
                                 <div>{item.offPrice * item.quantity}</div>
-                                <div>
-                                    <button onClick={() => decHanler(item)}>remove</button>
-                                    <span>{item.quantity}</span>
-                                    <button onClick={() => incHanler(item)}>add</button>
+                                <div className="btnGroup">
+                                    <button onClick={() => decHanler(item)}>-</button>
+                                    <button>{item.quantity}</button>
+                                    <button onClick={() => incHanler(item)}>+</button>
                                 </div>
                             </div>
                         ))}
@@ -61,10 +62,13 @@ const CartSummary = ({cart,total}) => {
                 <p>{originalTotalPrice - total} $</p>
             </div>
             <hr />
-            <div className="summaryItem">
+            <div className="summaryItem netPrice">
                 <p>net price</p>
                 <p>{total} $</p>
             </div>
+            <Link to="/checkout">
+                <button className="btn primary" style={{ marginTop: "20px", width:"100%" }}>Go to checkout</button>
+            </Link>
         </section>
     ) 
 }

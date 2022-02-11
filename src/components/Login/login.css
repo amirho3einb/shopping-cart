@@ -1,0 +1,9 @@
+.formContainer {
+  margin-top: 20px;
+}
+.calltoLogin {
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #6d28d9;
+}

@@ -46,7 +46,26 @@
   align-items: center;
   margin-bottom: 10px;
 }
-.cartSummary .summaryItem:last-child {
+.cartSummary .netPrice {
   border-top: 1px slid #ccc;
   padding-top: 10px;
+}
+
+.btnGroup button {
+  outline: none;
+  color: #6d28d9;
+  border: 1px solid #6d28d9;
+  padding: 5px 10px;
+  background-color: #fff;
+}
+
+.btnGroup button:first-child {
+  border-radius: 5px 0 0 5px;
+}
+.btnGroup button:last-child {
+  border-radius: 0 5px 5px 0;
+}
+.btnGroup button:nth-child(2) {
+  border-left: 0;
+  border-right: 0;
 }
