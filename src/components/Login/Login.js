@@ -3,20 +3,15 @@ import Input from "../../common/Input";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { loginUser } from "../../services/loginService";
 // step 1
 const initialValues = {
     email: "",
     password: "",
 }
 
-// step 2
-const onSubmit = (values) => {
-    console.log(values);
-    // axios
-    //     .post('http://localhost:3001/users', values)
-    //     .then((res) => console.log(res.data))
-    //     .catch((err) => console.log(err));
-} 
+
 
 // step 3
 const validationSchema = Yup.object({
@@ -27,7 +22,19 @@ const validationSchema = Yup.object({
 
 
 const LoginForm = () => {
+    const [error, setError] = useState(null);
 
+    // step 2
+    const onSubmit = async (values) => {
+        try {
+            const {data} = await loginUser(values);
+            setError(null);
+        } catch (error) {
+            if(error.response && error.response.data.message){
+                setError(error.response.data.message);
+            }
+        }
+    } 
     const formik = useFormik({
         initialValues: initialValues,
         onSubmit,
@@ -42,6 +49,7 @@ const LoginForm = () => {
                 <Input formik={formik} name="email" label="Email" />
                 <Input formik={formik} name="password" label="Password" type="password"/>
                 <button type="submit" disabled={!formik.isValid} className="btn primary" style={ { width:"100%" } }>login</button>
+                {error && <p style={{ color: "red" }}>{error}</p>}
                 <Link to="/signup" className="calltoLogin"><p>Not signup yet?</p></Link>
             </form>
         </div>
