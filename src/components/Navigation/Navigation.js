@@ -7,15 +7,15 @@ const Navigation = () => {
     return (  
         <header className='mainNavigation'>
             <nav>
-                <div>Shopping</div>
+                <div><NavLink to="/" activeClassName="activeLink" exact>Shopping</NavLink></div>
                 <ul>
                     <li>
-                        <NavLink to="/" activeClassName="activeLink" exact>home</NavLink>
+                        <NavLink to="/cart" activeClassName="activeLink">cart
+                            <span>{cart.length}</span>
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/cart" activeClassName="activeLink">cart
-                        <span>{cart.length}</span>
-                        </NavLink>
+                        <NavLink to="/signup" activeClassName="activeLink">login / signup</NavLink>
                     </li>
                 </ul>
                 

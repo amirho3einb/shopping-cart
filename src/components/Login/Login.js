@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import Input from "../../common/Input";
 import * as Yup from "yup";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../../services/loginService";
 // step 1
@@ -21,7 +21,7 @@ const validationSchema = Yup.object({
 
 
 
-const LoginForm = () => {
+const LoginForm = ({history}) => {
     const [error, setError] = useState(null);
 
     // step 2
@@ -29,6 +29,7 @@ const LoginForm = () => {
         try {
             const {data} = await loginUser(values);
             setError(null);
+            history.push('/');
         } catch (error) {
             if(error.response && error.response.data.message){
                 setError(error.response.data.message);
@@ -56,4 +57,4 @@ const LoginForm = () => {
     );
 }
  
-export default LoginForm;
+export default withRouter(LoginForm);

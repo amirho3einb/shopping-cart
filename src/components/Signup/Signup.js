@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import Input from "../../common/Input";
 import * as Yup from "yup";
 import "./signup.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { signupUser } from "../../services/signupService";
 import { useState } from "react";
 
@@ -29,7 +29,8 @@ const validationSchema = Yup.object({
     passwordConfirm: Yup.string().required("Password Confirmation is required").oneOf([Yup.ref("password"), null], "Passwords must match"),
 })
 
-const SignupForm = () => {
+const SignupForm = ({history}) => {
+    console.log(history);
     const [error, setError] = useState(null);
 
     // step 2
@@ -43,6 +44,7 @@ const SignupForm = () => {
         }
         try{
             const {data} = await signupUser(userData);
+            history.push('/');
             console.log(data);
         } catch (error) {
             if(error.response && error.response.data.message){
@@ -81,4 +83,4 @@ const SignupForm = () => {
     );
 }
  
-export default SignupForm;
+export default withRouter(SignupForm);
