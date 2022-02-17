@@ -1,9 +1,11 @@
 import {NavLink} from 'react-router-dom';
+import { useAuth } from '../../Providers/AuthProvider';
 import { useCart } from '../../Providers/CartProvider';
 import "./Navigation.css";
 
 const Navigation = () => {
     const {cart} = useCart();
+    const userData = useAuth();
     return (  
         <header className='mainNavigation'>
             <nav>
@@ -15,7 +17,7 @@ const Navigation = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/signup" activeClassName="activeLink">login / signup</NavLink>
+                        <NavLink to={userData ? '/profile' : '/login'} activeClassName="activeLink">{userData ? <>{userData.name}</> : <>login / signup</>}</NavLink>
                     </li>
                 </ul>
                 

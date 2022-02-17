@@ -12,21 +12,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import CheckOutPage from './pages/CheckOutPage';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
+import AuthProvider from './Providers/AuthProvider';
 
 
 function App() {
   return (
     <Router>
-      <CartProvider>
-        <ToastContainer />
-        <Switch>
-          <Route path="/cart" component={CartPage} />
-          <Route path="/checkout" component={CheckOutPage} />
-          <Route path="/signup" component={SignUpPage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/" component={HomePage} />
-        </Switch>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <ToastContainer />
+          <Switch>
+            <Route path="/cart" component={CartPage} />
+            <Route path="/checkout" component={CheckOutPage} />
+            <Route path="/signup" component={SignUpPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/" component={HomePage} />
+          </Switch>
+        </CartProvider>
+      </AuthProvider>
     </Router>
   );
 }

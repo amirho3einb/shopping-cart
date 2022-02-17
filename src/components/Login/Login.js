@@ -5,6 +5,7 @@ import "./login.css";
 import { Link, withRouter } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../../services/loginService";
+import { useAuthActions } from "../../Providers/AuthProvider";
 // step 1
 const initialValues = {
     email: "",
@@ -22,12 +23,15 @@ const validationSchema = Yup.object({
 
 
 const LoginForm = ({history}) => {
+    const setAuth = useAuthActions();
     const [error, setError] = useState(null);
-
+    
     // step 2
     const onSubmit = async (values) => {
         try {
             const {data} = await loginUser(values);
+            setAuth(data);
+            localStorage.setItem('authState' , JSON.stringify(data));
             setError(null);
             history.push('/');
         } catch (error) {
