@@ -13,6 +13,7 @@ import CheckOutPage from './pages/CheckOutPage';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import AuthProvider from './Providers/AuthProvider';
+import UserProfile from './pages/UserProfile';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <CartProvider>
           <ToastContainer />
           <Switch>
+            <Route path="/profile" component={UserProfile} />
             <Route path="/cart" component={CartPage} />
             <Route path="/checkout" component={CheckOutPage} />
             <Route path="/signup" component={SignUpPage} />
