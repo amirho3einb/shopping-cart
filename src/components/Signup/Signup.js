@@ -6,8 +6,9 @@ import { Link, withRouter } from "react-router-dom";
 import { signupUser } from "../../services/signupService";
 import { useState } from "react";
 import { useAuthActions } from "../../Providers/AuthProvider";
+import { useQuery } from "../../hooks/useQuery";
 
-// step 1
+
 const initialValues = {
     name: "",
     email: "",
@@ -16,9 +17,6 @@ const initialValues = {
     passwordConfirm: "",
 }
 
-
-
-// step 3
 const validationSchema = Yup.object({
     name: Yup.string().required("Name is required").min(6,'Name length is not valid'),
     email: Yup.string().email("Invalid email format").required("Email is required"),
@@ -31,10 +29,11 @@ const validationSchema = Yup.object({
 })
 
 const SignupForm = ({history}) => {
+    const query = useQuery();
+    const redirect = query.get("redirect") || "/";
     const setAuth = useAuthActions();
     const [error, setError] = useState(null);
 
-    // step 2
     const onSubmit = async (values) => {
         const { name, email, phoneNumber, password } = values;
         const userData = {
@@ -46,19 +45,12 @@ const SignupForm = ({history}) => {
         try{
             const {data} = await signupUser(userData);
             setAuth(data);
-            //localStorage.setItem('authState' , JSON.stringify(data));
-            history.push('/');
-            console.log(data);
+            history.push(redirect);
         } catch (error) {
             if(error.response && error.response.data.message){
                 setError(error.response.data.message);
             }
-            console.log(error.response.message);
         }
-        // axios
-        //     .post('http://localhost:3001/users', values)
-        //     .then((res) => console.log(res.data))
-        //     .catch((err) => console.log(err));
     } 
 
 
@@ -80,7 +72,7 @@ const SignupForm = ({history}) => {
                 <Input formik={formik} name="passwordConfirm" label="Password Confimation" type="password"/>
                 <button type="submit" disabled={!formik.isValid} className="btn primary" style={ { width:"100%" } }>sign up</button>
                 {error && <p style={{ color: "red" }}>{error}</p>}
-                <Link to="/login" className="calltoLogin"><p>Already signup?</p></Link>
+                <Link to={`/login?redirect=${redirect}`} className="calltoLogin"><p>Already signup?</p></Link>
             </form>
         </div>
     );
