@@ -3,9 +3,9 @@ import Input from "../../common/Input";
 import * as Yup from "yup";
 import "./login.css";
 import { Link, withRouter } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loginUser } from "../../services/loginService";
-import { useAuthActions } from "../../Providers/AuthProvider";
+import { useAuth, useAuthActions } from "../../Providers/AuthProvider";
 import { useQuery } from "../../hooks/useQuery";
 
 
@@ -19,11 +19,16 @@ const validationSchema = Yup.object({
     password: Yup.string().required("Password id required"),
 })
 
-const LoginForm = ({history}) => {
+const LoginForm = ({ history }) => {
+    const setAuth = useAuthActions();
+    const auth = useAuth();
+    const [error, setError] = useState(null);
     const query = useQuery();
     const redirect = query.get("redirect") || "/";
-    const setAuth = useAuthActions();
-    const [error, setError] = useState(null);
+    useEffect(()=>{
+        if (auth) history.push(redirect);
+    }, [redirect,auth]);
+
     
     const onSubmit = async (values) => {
         try {
