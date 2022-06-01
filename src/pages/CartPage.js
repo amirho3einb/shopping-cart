@@ -11,7 +11,7 @@ const CartPage = () => {
     return (
       <Layout>
         <main className="container">
-          <h2>cart is empty ....</h2>
+          <h2>سبد خرید شما خالی میباشد.</h2>
         </main>
       </Layout>
     );
@@ -53,26 +53,26 @@ const CartSummary = ({ cart, total }) => {
     : 0;
   return (
     <section className="cartSummary">
-      <h2 style={{ marginBottom: "30px" }}>cart summary</h2>
+      <h2 style={{ marginBottom: "30px" }}>جزئیات پرداخت</h2>
       <div className="summaryItem">
-        <p>original total price</p>
-        <p> {originalTotalPrice} $ </p>
+        <p>جمع مبلغ کل</p>
+        <p> {originalTotalPrice} تومان </p>
       </div>
       <div className="summaryItem">
-        <p>cart discount</p>
-        <p>{originalTotalPrice - total} $</p>
+        <p>جمع تخفیف</p>
+        <p>{originalTotalPrice - total} تومان</p>
       </div>
       <hr />
       <div className="summaryItem netPrice">
-        <p>net price</p>
-        <p>{total} $</p>
+        <p>مبلغ پرداختی</p>
+        <p>{total} تومان</p>
       </div>
       <Link to="/signup?redirect=checkout">
         <button
           className="btn primary"
           style={{ marginTop: "20px", width: "100%" }}
         >
-          Go to checkout
+          پرداخت مبلغ
         </button>
       </Link>
     </section>

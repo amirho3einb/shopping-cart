@@ -25,7 +25,8 @@ select {
   border-radius: 4px;
 }
 
-input:focus {
+input:focus,
+select:focus {
   outline: none;
   border: 2px solid #6d28d9;
 }
