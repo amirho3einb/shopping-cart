@@ -115,3 +115,18 @@
   font-size: 15px;
   cursor: pointer;
 }
+@media only screen and (max-width: 768px) {
+  .productDetail {
+    flex-direction: column;
+  }
+  .image img {
+    width: 100%;
+  }
+  .detail {
+    flex-direction: column;
+    row-gap: 30px;
+  }
+  .detail > div {
+    width: 100%;
+  }
+}
